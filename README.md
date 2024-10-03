@@ -1,7 +1,7 @@
 # Crypto Tracker IOS App
 
 <p align="left">
-    <img src="https://github.com/scottyschwartzowen/Mappin/blob/main/ScottysMapApp/Assets.xcassets/Images/map-app.imageset/map-app.png" alt="Mappin App Image" width="75%" />
+    <img src="https://github.com/scottyschwartzowen/AshtariaCrypto/blob/main/AshtariaCrypto/Assets.xcassets/Images/crypto-tracker.imageset/crypto-tracker.png" alt="Mappin App Image" width="75%" />
 </p>
 
 - I developed this app using SwiftUI, and wrote it 100% in Swift
