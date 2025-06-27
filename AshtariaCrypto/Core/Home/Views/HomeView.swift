@@ -10,23 +10,24 @@ import SwiftUI
 struct HomeView: View {
 
 	@EnvironmentObject private var vm: HomeViewModel
-	@State private var showPortfolio: Bool = false // animate right
-	@State private var showPortfolioView: Bool = false // new sheet
-	@State private var showSettingsView: Bool = false // new sheet
+	@State private var showPortfolio: Bool = false
+	@State private var showPortfolioView: Bool = false
+	@State private var showSettingsView: Bool = false
 	@State private var selectedCoin: CoinModel? = nil
 	@State private var showDetailView: Bool = false
 
-    var body: some View {
+	var body: some View {
+		NavigationStack {
 			ZStack {
-				// background layer
+				// Background layer
 				Color.theme.background
 					.ignoresSafeArea()
-					.sheet(isPresented: $showPortfolioView, content: {
+					.sheet(isPresented: $showPortfolioView) {
 						PortfolioView()
 							.environmentObject(vm)
-					})
+					}
 
-				// content layer
+				// Content layer
 				VStack {
 					homeHeader
 
@@ -54,16 +55,18 @@ struct HomeView: View {
 
 					Spacer(minLength: 0)
 				}
-				.sheet(isPresented: $showSettingsView, content: {
+				.sheet(isPresented: $showSettingsView) {
 					SettingsView()
-				})
+				}
 			}
-			.background(
-				NavigationLink(
-					destination: DetailLoadingView(coin: $selectedCoin),
-					isActive: $showDetailView,
-					label: { EmptyView() } ))
-    }
+			// ✅ New programmatic navigation
+			.navigationDestination(isPresented: $showDetailView) {
+				if let coin = selectedCoin {
+					DetailLoadingView(coin: .constant(coin))
+				}
+			}
+		}
+	}
 }
 
 struct HomeView_Previews: PreviewProvider {
