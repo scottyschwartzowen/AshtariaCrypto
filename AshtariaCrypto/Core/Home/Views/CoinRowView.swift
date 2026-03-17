@@ -8,23 +8,23 @@
 import SwiftUI
 
 struct CoinRowView: View {
-
+	
 	let coin: CoinModel
 	let showHoldingsColumn: Bool
-
-    var body: some View {
-			HStack(spacing: 0) {
-				leftColumm
-				Spacer()
-				if showHoldingsColumn {
-					centerColumn
-				}
-				rightColumn
+	
+	var body: some View {
+		HStack(spacing: 0) {
+			leftColumm
+			Spacer()
+			if showHoldingsColumn {
+				centerColumn
 			}
-			.font(.subheadline)
-			.background(
-				Color.theme.background.opacity(0.001))
+			rightColumn
 		}
+		.font(.subheadline)
+		.background(
+			Color.theme.background.opacity(0.001))
+	}
 }
 
 struct CoinRowView_Previews: PreviewProvider {
@@ -40,7 +40,7 @@ struct CoinRowView_Previews: PreviewProvider {
 }
 
 extension CoinRowView {
-
+	
 	private var leftColumm: some View {
 		HStack(spacing: 0) {
 			Text("\(coin.rank)")
@@ -55,7 +55,7 @@ extension CoinRowView {
 				.foregroundStyle(Color.theme.accent)
 		}
 	}
-
+	
 	private var centerColumn: some View {
 		VStack(alignment: .trailing) {
 			Text(coin.currentHoldingsValue.asCurrencyWith2Decimals())
@@ -64,7 +64,7 @@ extension CoinRowView {
 		}
 		.foregroundStyle(Color.theme.accent)
 	}
-
+	
 	private var rightColumn: some View {
 		VStack(alignment: .trailing) {
 			Text(coin.currentPrice.asCurrencyWith6Decimals())
@@ -75,6 +75,6 @@ extension CoinRowView {
 					(coin.priceChangePercentage24H ?? 0) >= 0 ? Color.theme.vert : Color.theme.rouge
 				)
 		}
-		.frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+		.frame(width: UIApplication.shared.currentScreen.bounds.width / 3.5, alignment: .trailing)
 	}
 }
