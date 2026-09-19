@@ -47,6 +47,7 @@ struct PortfolioView: View {
 				}
 			}
 		}
+		.tint(Color.theme.accent)
 	}
 }
 
@@ -141,6 +142,7 @@ extension PortfolioView {
 			)
 		}
 		.font(.headline)
+		.foregroundStyle(Color.theme.accent)
 	}
 
 	private func saveButtonPressed() {
@@ -174,4 +176,3 @@ extension PortfolioView {
 		vm.searchText = ""
 	}
 }
-
